@@ -1,10 +1,11 @@
 #BEAUTIFUL SOUP
 import urllib2, sys
 from bs4 import BeautifulSoup as BS
+import sys
 
 # Specify TV Show and Season
-show = 'Rick and Morty'
-season = 3
+show = str(sys.argv[1])
+season = int(sys.argv[2])
 
 #Do queries for each episode of the season.
 for e in range(1, 50):
@@ -20,7 +21,7 @@ for e in range(1, 50):
 	else:
 		ep = 'e'
 	this = show + s + str(season) + ep + str(e)
-	pbURL = 'https://thepiratebay.org/search/' + this + ' /0/99/0'
+	pbURL = 'https://thepiratebay.org/search/' + this + '/0/99/0'
 	pbURL= pbURL.replace(" ", "%20")
 	hdr = {'User-Agent': 'Mozilla/5.0'}
 	req = urllib2.Request(pbURL,headers=hdr)
