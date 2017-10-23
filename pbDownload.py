@@ -14,8 +14,9 @@ def getMagnet(movieName):
 	soupPb = BS(html, 'html.parser')
 	# Find the top magnet link
 	link = soupPb.find(title='Download this torrent using magnet')
-	print movie + '\n' + link.get('href')
-	print '\n\n'
+	if link:
+		print movie + '\n' + link.get('href')
+		print '\n\n'
 
 def getMovies():
     # Dic for return
