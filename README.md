@@ -1,2 +1,11 @@
  # Magnet Link Fetcher
-Being a lazy programmer and an avid movie watcher, I wanted a way to stay up to date on recently released movies. This python script fetches the top magnet link for 1080p copies of movies recently released on DVD. For research purposes.
+A few helpful files for people interested in looking at *pointless* magnet links.
+
+
+#getMovies
+
+This will retrive a list of movies recently released on DVD. It will then fetch the top 1080p magnet link.
+
+#getShows
+
+Given a show and season, this will get the top magnet link for each episode. Handy when you want to get a season that has not yet finished but do not want to crawl through pb.
