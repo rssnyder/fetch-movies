@@ -2,6 +2,7 @@
 import urllib2, sys
 from bs4 import BeautifulSoup as BS
 
+# Get the top 1080p torrent on the pirate bay for a given movie
 def getMagnet(movieName):
 	movie = str(movieName)
 	# Build url
@@ -18,6 +19,7 @@ def getMagnet(movieName):
 		print movie + '\n' + link.get('href')
 		print '\n\n'
 
+# Get a list of new movies out on dvd
 def getMovies():
     # Dic for return
     movies = []
@@ -31,14 +33,3 @@ def getMovies():
             movies.insert(count, movie.string)
             count += 1
     return movies
-
-# Get the HTML
-html = urllib2.urlopen('https://www.moviefone.com/dvd/?sort=release-date&page=1')
-soup = BS(html, 'html.parser')
-
-# Get list of movies
-movies = getMovies()
-
-# For each movie find the magnet link for the top result
-for movie in movies:
-	getMagnet(movie)
