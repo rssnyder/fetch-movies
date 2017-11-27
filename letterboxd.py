@@ -5,7 +5,6 @@ import sys
 
 # Get the link of the list
 listURL = sys.argv[1]
-print "\n"
 hdr = {'User-Agent': 'Mozilla/5.0'}
 req = urllib2.Request(listURL,headers=hdr)
 
