@@ -31,7 +31,7 @@ for e in range(1, 50):
 	# Find the top magnet link
 	link = soupPb.find(title='Download this torrent using magnet')
 	if link:
-		print this + '\n' + link.get('href')
+		print link.get('href')
 		print '\n\n'
 	else:
 		#If we cant find this episode, this must be the end of avalible episodes
