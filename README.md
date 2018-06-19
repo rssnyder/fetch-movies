@@ -4,7 +4,8 @@ A few helpful files for people interested in looking at *pointless* magnet links
 
 # getMovies
 
-This file holds a few functions. The first get the magnet link for the top 1080p torrent on the pirate bay for a given movie.
+This file holds a few functions. The first get the magnet link for the top 1080p torrent on the pirate bay for a given movie. Give it as much information as you can, and you can also specify the quality [480p, 720p, 1080p, ...].
+
 The second gets a list of new movies out on dvd formatted as a python dictionary.
 
 
