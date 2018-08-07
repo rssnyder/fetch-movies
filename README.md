@@ -24,3 +24,5 @@ Usage: 'python letterboxd.py [link to list]
 # youtubeLinks
 
 Given a string, returns the link to the top youtube search result
+
+Run with an argument being an m3u formatted list of songs and it will download them all as mp3s from youtube
