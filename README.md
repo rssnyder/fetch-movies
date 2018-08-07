@@ -20,3 +20,7 @@ Usage: 'python getshows.py "[Show Name + other keywords]" [Season Number]
 Given a list off letterboxd.com, this will return magnet links for the top 1080p torrent on the pirate bay for each movie in the list.
 
 Usage: 'python letterboxd.py [link to list]
+
+# youtubeLinks
+
+Given a string, returns the link to the top youtube search result

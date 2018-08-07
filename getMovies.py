@@ -1,6 +1,7 @@
 #BEAUTIFUL SOUP
 import sys
-from urllib.request import Request, urlopen
+#from urllib.request import Request, urlopen
+import urllib2
 from bs4 import BeautifulSoup as BS
 
 # Get the top torrent on the pirate bay for a given movie, with optional quality specified
@@ -8,13 +9,13 @@ def getMagnet(movieName, quality=''):
 	# Build the url
 	pbURL = 'https://thepiratebay.org/search/' + movieName + ' ' + quality + '/0/99/0'
 	pbURL= pbURL.replace(" ", "%20")
-	webpage = Request(pbURL)
-	# Add headers to avoid 403 error
-	webpage.add_header('User-Agent', 'Mozilla/5.0')
+	hdr = {'User-Agent': 'Mozilla/5.0'}
+	req = urllib2.Request(pbURL,headers=hdr)
+
 	try:
-		html = urlopen(webpage).read()
-	except:
-		print("Could not find " + movieName + " at supplied resolution")
+		html = urllib2.urlopen(req)
+	except Exception as e:
+		print("Could not find " + movieName + " at supplied resolution" + str(e))
 		return
 
 	soupPb = BS(html, 'html.parser')
@@ -39,22 +40,44 @@ def getList(filePath):
 # Get a list of new movies out on dvd
 # Format: Movie Title Year : Planet of the Apes 1968
 def getMovies():
-    # Dic for return
-    movies = []
-    count = 0;
-    #Get the HTML
-    html = urllib.urlopen('https://www.moviefone.com/dvd/?sort=release-date&page=1')
-    soup = BS(html, 'html.parser')
-    #For each entery in the document, get the tag and sort out the movies
-    for movie in soup.find_all('a'):
-        if(movie.get('title') == ''):
-            movies.insert(count, movie.string)
-            count += 1
-    return movies
+	# Dic for return
+	movies = []
+	count = 0;
+	#Get the HTML
+	html = urllib2.urlopen('https://www.moviefone.com/dvd/?sort=release-date&page=1')
+	soup = BS(html, 'html.parser')
+	#For each entery in the document, get the tag and sort out the movies
+	for movie in soup.find_all('a'):
+		if(movie.get('title') == ''):
+			movies.insert(count, movie.string)
+			count += 1
+		return movies
+
+def getRarbg(logFile):
+	# Build the url
+	rarURL = 'https://rarbg.to/torrents.php'
+	hdr = {'User-Agent': 'Mozilla/5.0'}
+	req = urllib2.Request(rarURL,headers=hdr)
+
+	try:
+		html = urllib2.urlopen(req)
+	except Exception as e:
+		print("Could not fetch rarbg movies " + str(e))
+		return
+
+	soup = BS(html, 'html.parser')
+	# Find the top magnet link
+	section = soup.find('div', {'align': 'center'})
+	movies = section.find_all('a')
+	for movie in movies:
+		movi = str(movie)
+		movi = movi[9:]
+		download = movi[:movi.find('"')]
+		print download
 
 if __name__ == "__main__":
-    try:
+	try:
 		filePath = str(sys.argv[1])
 	except:
 		print "Usage: getMovies.py list-path"
-	getList(filePath)
+	getRarbg(filePath)

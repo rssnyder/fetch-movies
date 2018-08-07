@@ -5,11 +5,11 @@ import sys
 import tvdb_api
 
 def getShows(show, season):
-	t = tvdb_api.Tvdb()
-	theShow = t[show][season]
-	episodes = len(theShow.keys())
+	#t = tvdb_api.Tvdb()
+	#theShow = t[show][season]
+	#episodes = len(theShow.keys())
 	#Do queries for each episode of the season.
-	for e in range(1, episodes):
+	for e in range(1, 50):
 		# Build url
 		# Need leading 0 for earlier seasons + episodes
 		if season < 10:
@@ -35,6 +35,7 @@ def getShows(show, season):
 			print link.get('href')
 			print '\n\n'
 		else:
+			exit()
 			print "Could not find episode " + e
 
 if __name__ == "__main__":
